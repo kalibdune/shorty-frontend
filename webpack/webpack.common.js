@@ -1,3 +1,4 @@
+//// filepath: /Users/kalibdune/IT/shorty-frontend/webpack/webpack.common.js
 const path = require('path');
 const HTMLWebpackPlugins = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -7,7 +8,7 @@ const webpack = require('webpack');
 const production = process.env.NODE_ENV === 'production';
 
 module.exports = {
-    entry: path.resolve(__dirname, '../src/index.ts'),
+    entry: path.resolve(__dirname, '../src/index.tsx'),
     output: {
         path: path.resolve(__dirname, '../dist'),
         filename: 'main.js',
