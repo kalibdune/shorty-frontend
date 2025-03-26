@@ -7,7 +7,7 @@ const Main: React.FC = () => {
             <div className="blurred-spot spot1"></div>
             <div className="blurred-spot spot2"></div>
         </div>
-    );
-};
+    )
+}
 
-export default Main;
+export default Main

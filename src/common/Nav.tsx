@@ -6,7 +6,7 @@ const Main: React.FC = () => {
         <nav className="nav">
             <a href="#">Мои ссылки</a>
         </nav>
-    );
-};
+    )
+}
 
-export default Main;
+export default Main

@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react"
-import Input from "./Input"
+import Input from "./InputSection"
 import "./Main.scss"
 
 const Main: React.FC = () => {
@@ -28,7 +28,7 @@ const Main: React.FC = () => {
             >
             </Input>
         </div>
-    );
-};
+    )
+}
 
-export default Main;
+export default Main

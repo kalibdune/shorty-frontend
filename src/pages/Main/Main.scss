@@ -7,11 +7,11 @@
 
 header {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-    margin-bottom: 10vh;
     height: 200px;
+    margin-bottom: 10vh;
 }
 
 @mixin font-header {
@@ -37,10 +37,25 @@ header {
     width: 100%;
     max-width: 550px;
     padding: 5px 10px;
-
     background: white;
     border-radius: 30px;
     box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
+}
+
+.breathing-red {
+    animation: breathingRedShadow 1.5s ease-in-out 3;
+}
+
+@keyframes breathingRedShadow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 10px 2px rgba(255, 0, 0, 0.5);
+    }
+
+    50% {
+        box-shadow: 0 0 20px 4px rgba(255, 0, 0, 0.8);
+    }
 }
 
 @mixin input-box {
@@ -69,8 +84,8 @@ header {
 
 .options-container {
     display: flex;
-    justify-content: center;
     flex-direction: column;
+    justify-content: center;
     gap: 30px;
     width: 100%;
     max-width: 550px;
@@ -97,7 +112,6 @@ header {
     justify-content: center;
     min-width: 100px;
     padding: 10px;
-    font-size: 16px;
     color: white;
     font-size: 16px;
     white-space: nowrap;
@@ -107,24 +121,30 @@ header {
 }
 
 
-input[type=radio] {
+input[type="radio"] {
     display: none;
 }
 
 .input-box-options {
     @include input-box;
     position: relative;
-    opacity: 0;
     margin-top: -75px;
-    visibility: hidden;
     text-align: center;
-    background-color: transparent;
-    // transition: box-shadow 0.25s ease-in-out;
+    // background-color: transparent;
+    visibility: hidden;
+    opacity: 0;
+    // border: 0px solid transparent;
+
+    background-color: white; // Сделаем фон видимым
+    border: 1px solid transparent; // Тонкая граница, чтобы эффект был заметен
+    // transition: box-shadow 0.25s ease-in-out;transition
 }
 
 // .input-box-options:focus {
-//     box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.5);
-// }
+//     box-shadow: 0 0 0 4px rgb(0 123 255 / 50%);box-shadow
+// } 
+
+
 
 .input-box-options.show {
     visibility: visible;
@@ -132,32 +152,32 @@ input[type=radio] {
 }
 
 .input-box-options.hide {
-    animation: fadeOutUp 0.5s ease forwards;
     visibility: hidden;
     transition: visibility 0s linear 0.5s;
+    animation: fadeOutUp 0.5s ease forwards;
 }
 
 @keyframes fadeInDown {
     from {
-        opacity: 0;
         margin-top: -75px;
+        opacity: 0;
     }
 
     to {
-        opacity: 1;
         margin-top: 0;
+        opacity: 1;
     }
 }
 
 @keyframes fadeOutUp {
     from {
-        opacity: 1;
         margin-top: 0;
+        opacity: 1;
     }
 
     to {
-        opacity: 0;
         margin-top: -75px;
+        opacity: 0;
     }
 }
 
@@ -165,12 +185,12 @@ input[type=radio] {
 @media (width <=700px) {
     .options {
         display: flex;
-        justify-content: center;
         flex-direction: column;
+        justify-content: center;
         gap: 10px;
         width: 100%;
         max-width: 550px;
-        padding: 15px 0px;
+        padding: 15px 0;
         background: white;
         border-radius: 30px;
     }
@@ -203,10 +223,10 @@ input[type=radio] {
     }
 
     .input-box {
-        text-align: center;
         width: 100%;
         margin-bottom: 10px;
         padding: 10px;
+        text-align: center;
         border-radius: 20px;
     }
 
@@ -220,7 +240,7 @@ input[type=radio] {
     .options {
         flex-direction: column;
         width: 100%;
-        padding: 15px 0px;
+        padding: 15px 0;
         border-radius: 20px;
     }
 }
