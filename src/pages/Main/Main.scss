@@ -1,70 +1,41 @@
-/* BACKGROUND SECTION */
-.background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: -1;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-}
-
-.blurred-spot {
-    position: absolute;
-    width: 400px;
-    height: 400px;
-    border-radius: 50%;
-    opacity: 0.5;
-    filter: blur(100px);
-    animation: move-blobs 5s infinite alternate ease-in-out;
-}
-
-.spot1 {
-    top: 20%;
-    left: 10%;
-    background: rgb(138 43 226 / 50%);
-}
-
-.spot2 {
-    top: 60%;
-    left: 70%;
-    background: rgb(75 0 130 / 50%);
-}
-
-@keyframes move-blobs {
-    0% {
-        transform: translate(50, 50);
-    }
-
-    100% {
-        transform: translate(-100px, 50px);
-    }
-}
-
-/* CONTAINER */
-
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 80vw;
-    text-align: center;
 }
 
-.title {
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     margin-bottom: 10vh;
+    height: 200px;
+}
+
+@mixin font-header {
     font-weight: bold;
-    font-size: 116px;
     background: linear-gradient(45deg, rgb(63 60 60), rgb(242 231 231));
     background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
+.title {
+    @include font-header;
+    font-size: 116px;
+}
+
+.title-url {
+    font-size: 70px;
+}
+
+
 .input-container {
     display: flex;
     align-items: center;
     width: 100%;
-    max-width: 500px;
+    max-width: 550px;
     padding: 5px 10px;
 
     background: white;
@@ -72,7 +43,8 @@
     box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
 }
 
-.input-box {
+@mixin input-box {
+    position: relative;
     flex: 1;
     min-width: 0;
     padding: 12px;
@@ -82,12 +54,26 @@
     outline: none;
 }
 
+.input-box {
+    @include input-box;
+}
+
 .options {
     display: flex;
     justify-content: center;
-    gap: 25px;
+    gap: 20px;
     width: 100%;
-    max-width: 500px;
+    max-width: 550px;
+    background: white;
+}
+
+.options-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 30px;
+    width: 100%;
+    max-width: 550px;
     margin-top: 5vh;
     padding: 15px 10px;
     background: white;
@@ -100,13 +86,104 @@
     flex-direction: row;
     justify-content: center;
     min-width: 100px;
-    padding: 5px;
-    padding-right: 10px;
-    padding-left: 10px;
+    padding: 10px;
     font-size: 16px;
-    border: black 1px solid;
-    border-radius: 30px;
     cursor: pointer;
+}
+
+.option-button-checked {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    min-width: 100px;
+    padding: 10px;
+    font-size: 16px;
+    color: white;
+    font-size: 16px;
+    white-space: nowrap;
+    background: #333333;
+    border: none;
+    border-radius: 30px;
+}
+
+
+input[type=radio] {
+    display: none;
+}
+
+.input-box-options {
+    @include input-box;
+    position: relative;
+    opacity: 0;
+    margin-top: -75px;
+    visibility: hidden;
+    text-align: center;
+    background-color: transparent;
+    // transition: box-shadow 0.25s ease-in-out;
+}
+
+// .input-box-options:focus {
+//     box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.5);
+// }
+
+.input-box-options.show {
+    visibility: visible;
+    animation: fadeInDown 0.5s ease forwards;
+}
+
+.input-box-options.hide {
+    animation: fadeOutUp 0.5s ease forwards;
+    visibility: hidden;
+    transition: visibility 0s linear 0.5s;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        margin-top: -75px;
+    }
+
+    to {
+        opacity: 1;
+        margin-top: 0;
+    }
+}
+
+@keyframes fadeOutUp {
+    from {
+        opacity: 1;
+        margin-top: 0;
+    }
+
+    to {
+        opacity: 0;
+        margin-top: -75px;
+    }
+}
+
+
+@media (width <=700px) {
+    .options {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        max-width: 550px;
+        padding: 15px 0px;
+        background: white;
+        border-radius: 30px;
+    }
+
+    .option-button {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        min-width: 100px;
+        padding: 10px;
+        font-size: 16px;
+        cursor: pointer;
+    }
 }
 
 @media (width <=500px) {
@@ -115,11 +192,8 @@
         font-size: 72px;
     }
 
-    .nav {
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
-        padding: 10px;
+    .title-url {
+        font-size: 50px;
     }
 
     .input-container {
@@ -129,10 +203,10 @@
     }
 
     .input-box {
+        text-align: center;
         width: 100%;
         margin-bottom: 10px;
         padding: 10px;
-        text-align: center;
         border-radius: 20px;
     }
 
@@ -146,7 +220,7 @@
     .options {
         flex-direction: column;
         width: 100%;
-        padding: 10px;
+        padding: 15px 0px;
         border-radius: 20px;
     }
 }
