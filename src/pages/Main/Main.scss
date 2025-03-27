@@ -1,244 +1,233 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 80vw;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 80vw;
 }
 
 header {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 200px;
-    margin-bottom: 10vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 200px;
+	margin-bottom: 10vh;
 }
 
 @mixin font-header {
-    font-weight: bold;
-    background: linear-gradient(45deg, rgb(63 60 60), rgb(242 231 231));
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+	font-weight: bold;
+	background: linear-gradient(45deg, rgb(63 60 60), rgb(242 231 231));
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
 }
 
 .title {
-    @include font-header;
-    font-size: 116px;
+	@include font-header;
+	font-size: 116px;
 }
 
 .title-url {
-    font-size: 70px;
+	font-size: 70px;
 }
 
-
 .input-container {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    max-width: 550px;
-    padding: 5px 10px;
-    background: white;
-    border-radius: 30px;
-    box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
+	display: flex;
+	align-items: center;
+	width: 100%;
+	max-width: 550px;
+	padding: 5px 10px;
+	background: white;
+	border-radius: 30px;
+	box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
 }
 
 .breathing-red {
-    animation: breathingRedShadow 1.5s ease-in-out 3;
+	animation: breathingRedShadow 1.5s ease-in-out 3;
 }
 
 @keyframes breathingRedShadow {
-    0%,
-    100% {
-        box-shadow: 0 0 10px 2px rgb(255 0 0 / 50%);
-    }
+	0%,
+	100% {
+		box-shadow: 0 0 10px 2px rgb(255 0 0 / 50%);
+	}
 
-    50% {
-        box-shadow: 0 0 20px 4px rgb(255 0 0 / 80%);
-    }
+	50% {
+		box-shadow: 0 0 20px 4px rgb(255 0 0 / 80%);
+	}
 }
 
 @mixin input-box {
-    position: relative;
-    flex: 1;
-    min-width: 0;
-    padding: 12px;
-    font-size: 18px;
-    border: none;
-    border-radius: 30px;
-    outline: none;
+	position: relative;
+	flex: 1;
+	min-width: 0;
+	padding: 12px;
+	font-size: 18px;
+	border: none;
+	border-radius: 30px;
+	outline: none;
 }
 
 .input-box {
-    @include input-box;
+	@include input-box;
 }
 
 .options {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    width: 100%;
-    max-width: 550px;
-    background: white;
+	display: flex;
+	justify-content: center;
+	gap: 20px;
+	width: 100%;
+	max-width: 550px;
+	background: white;
 }
 
 .options-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 30px;
-    width: 100%;
-    max-width: 550px;
-    margin-top: 5vh;
-    padding: 15px 10px;
-    background: white;
-    border-radius: 30px;
-    box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 30px;
+	width: 100%;
+	max-width: 550px;
+	margin-top: 5vh;
+	padding: 15px 10px;
+	background: white;
+	border-radius: 30px;
+	box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
 }
 
 .option-button {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    min-width: 100px;
-    padding: 10px;
-    font-size: 16px;
-    cursor: pointer;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	min-width: 100px;
+	padding: 10px;
+	font-size: 16px;
+	cursor: pointer;
 }
 
 .option-button-checked {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    min-width: 100px;
-    padding: 10px;
-    color: white;
-    font-size: 16px;
-    white-space: nowrap;
-    background: #333333;
-    border: none;
-    border-radius: 30px;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	min-width: 100px;
+	padding: 10px;
+	color: white;
+	font-size: 16px;
+	white-space: nowrap;
+	background: #333333;
+	border: none;
+	border-radius: 30px;
 }
 
-
-input[type="radio"] {
-    display: none;
+input[type='radio'] {
+	display: none;
 }
 
 .input-box-options {
-    @include input-box;
-    position: relative;
-    margin-top: -75px;
-    text-align: center;border
-    background-color: white;background-color
-    visibility: hidden;
-    opacity: 0;
-    // background-color: transparent;
-    // border: 0 solid transparent; // Сделаем фон видимым
-    border: 1px solid transparent;border // Тонкая граница, чтобы эффект был заметен
-    // transition: box-shadow 0.25s ease-in-out;transitiontransition
+	@include input-box;
+	position: relative;
+	margin-top: -75px;
+	text-align: center;
+	background-color: white;
+	background-color: transparent;
+	border: 1px solid transparent;
+	visibility: hidden;
+	opacity: 0;
 }
 
-// .input-box-options:focus {
-//     box-shadow: 0 0 0 4px rgb(0 123 255 / 50%);box-shadowbox-shadow
-// } 
-
-
-
 .input-box-options.show {
-    visibility: visible;
-    animation: fadeInDown 0.5s ease forwards;
+	visibility: visible;
+	animation: fadeInDown 0.5s ease forwards;
 }
 
 .input-box-options.hide {
-    visibility: hidden;
-    transition: visibility 0s linear 0.5s;
-    animation: fadeOutUp 0.5s ease forwards;
+	visibility: hidden;
+	transition: visibility 0s linear 0.5s;
+	animation: fadeOutUp 0.5s ease forwards;
 }
 
 @keyframes fadeInDown {
-    from {
-        margin-top: -75px;
-        opacity: 0;
-    }
+	from {
+		margin-top: -75px;
+		opacity: 0;
+	}
 
-    to {
-        margin-top: 0;
-        opacity: 1;
-    }
+	to {
+		margin-top: 0;
+		opacity: 1;
+	}
 }
 
 @keyframes fadeOutUp {
-    from {
-        margin-top: 0;
-        opacity: 1;
-    }
+	from {
+		margin-top: 0;
+		opacity: 1;
+	}
 
-    to {
-        margin-top: -75px;
-        opacity: 0;
-    }
+	to {
+		margin-top: -75px;
+		opacity: 0;
+	}
 }
 
-
 @media (width <=700px) {
-    .options {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        gap: 10px;
-        width: 100%;
-        max-width: 550px;
-        padding: 15px 0;
-        background: white;
-        border-radius: 30px;
-    }
+	.options {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		gap: 10px;
+		width: 100%;
+		max-width: 550px;
+		padding: 15px 0;
+		background: white;
+		border-radius: 30px;
+	}
 
-    .option-button {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        min-width: 100px;
-        padding: 10px;
-        font-size: 16px;
-        cursor: pointer;
-    }
+	.option-button {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		min-width: 100px;
+		padding: 10px;
+		font-size: 16px;
+		cursor: pointer;
+	}
 }
 
 @media (width <=500px) {
-    .title {
-        margin-bottom: 5vh;
-        font-size: 72px;
-    }
+	.title {
+		margin-bottom: 5vh;
+		font-size: 72px;
+	}
 
-    .title-url {
-        font-size: 50px;
-    }
+	.title-url {
+		font-size: 50px;
+	}
 
-    .input-container {
-        flex-direction: column;
-        padding: 10px;
-        border-radius: 20px;
-    }
+	.input-container {
+		flex-direction: column;
+		padding: 10px;
+		border-radius: 20px;
+	}
 
-    .input-box {
-        width: 100%;
-        margin-bottom: 10px;
-        padding: 10px;
-        text-align: center;
-        border-radius: 20px;
-    }
+	.input-box {
+		width: 100%;
+		margin-bottom: 10px;
+		padding: 10px;
+		text-align: center;
+		border-radius: 20px;
+	}
 
-    .button {
-        width: 100%;
-        padding: 10px;
-        font-size: 14px;
-        border-radius: 20px;
-    }
+	.button {
+		width: 100%;
+		padding: 10px;
+		font-size: 14px;
+		border-radius: 20px;
+	}
 
-    .options {
-        flex-direction: column;
-        width: 100%;
-        padding: 15px 0;
-        border-radius: 20px;
-    }
+	.options {
+		flex-direction: column;
+		width: 100%;
+		padding: 15px 0;
+		border-radius: 20px;
+	}
 }
