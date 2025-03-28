@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import { ExpOpts } from '../../types/enums'
+import { getRandomPlaceholderDay } from '../../utils/placeholders'
 
 type CustomExpirationInputProps = {
 	optionInputValue: string
-	placeholder: string
 	onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
 	selectedOption: ExpOpts
 	dateInputRef: React.RefObject<HTMLInputElement | null>
@@ -11,7 +11,6 @@ type CustomExpirationInputProps = {
 
 const CustomExpirationInput: React.FC<CustomExpirationInputProps> = ({
 	optionInputValue,
-	placeholder,
 	onChange,
 	selectedOption,
 	dateInputRef,
@@ -31,11 +30,13 @@ const CustomExpirationInput: React.FC<CustomExpirationInputProps> = ({
 		}
 	}, [selectedOption])
 
+	const placeholderDay: string = useMemo(() => getRandomPlaceholderDay(), [])
+
 	return (
 		<input
 			type='text'
 			className='input-box-options'
-			placeholder={placeholder}
+			placeholder={placeholderDay}
 			value={optionInputValue}
 			onChange={onChange}
 			ref={dateInputRef}

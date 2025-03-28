@@ -4,6 +4,9 @@ const HTMLWebpackPlugins = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpack = require('webpack');
+const Dotenv = require('dotenv-webpack')
+
+
 
 const production = process.env.NODE_ENV === 'production';
 
@@ -76,6 +79,9 @@ module.exports = {
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
             filename: 'static/styles/index.css',
+        }),
+        new Dotenv({
+            path: './.env',
         }),
     ],
     resolve: {

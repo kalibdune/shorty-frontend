@@ -1,18 +1,16 @@
-import React, { useState, useMemo, useRef } from 'react'
+import React, { useState, useRef } from 'react'
 import { ExpOpts } from '../../types/enums'
 import { validateDate, validateUrl } from '../../utils/validation'
-import { getRandomPlaceholderDay } from '../../utils/placeholders'
 import InputField from './InputField'
 import ExpirationOptions from './ExpirationOptions'
 import CustomExpirationInput from './CustomExpirationInput'
 import './Main.scss'
 
 type InputProps = {
-	url: string
 	setTitle: (url: string) => void
 }
 
-const InputSection: React.FC<InputProps> = ({ url, setTitle }) => {
+const InputSection: React.FC<InputProps> = ({ setTitle }) => {
 	const [inputValue, setInputValue] = useState('')
 	const [selectedOption, setSelectedOption] = useState<ExpOpts>(ExpOpts.Day)
 	const [optionInputValue, setOptionInputValue] = useState('')
@@ -20,8 +18,6 @@ const InputSection: React.FC<InputProps> = ({ url, setTitle }) => {
 	const urlInputRef = useRef<HTMLInputElement>(null)
 	const dateInputRef = useRef<HTMLInputElement>(null)
 	const optionsInputRef = useRef<HTMLInputElement>(null)
-
-	const placeholderDay: string = useMemo(() => getRandomPlaceholderDay(), [])
 
 	const submitForm = (event: React.FormEvent<HTMLFormElement>) => {
 		const isValidUrl = validateUrl(inputValue)
@@ -75,7 +71,6 @@ const InputSection: React.FC<InputProps> = ({ url, setTitle }) => {
 				<CustomExpirationInput
 					selectedOption={selectedOption}
 					optionInputValue={optionInputValue}
-					placeholder={placeholderDay}
 					onChange={changeDateInput}
 					dateInputRef={dateInputRef}
 				/>

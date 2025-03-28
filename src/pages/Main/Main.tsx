@@ -19,7 +19,7 @@ const Main: React.FC = () => {
 					{url}
 				</p>
 			</header>
-			<Input url={url} setTitle={setTitleUrl}></Input>
+			<Input setTitle={setTitleUrl}></Input>
 		</div>
 	)
 }
