@@ -1,11 +1,5 @@
 import React from 'react'
-
-enum ExpOpts {
-	Day = '24 часа',
-	Week = 'Неделя',
-	Unlimited = 'Бзелимитно',
-	Custom = 'Свое время',
-}
+import { ExpOpts } from '../../types/enums'
 
 type ExpirationOptionsProps = {
 	selectedOption: ExpOpts

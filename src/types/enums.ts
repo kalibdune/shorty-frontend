@@ -1,6 +1,6 @@
 export enum ExpOpts {
-	Day = '24 часа',
+	Day = '24 Часа',
 	Week = 'Неделя',
-	Unlimited = 'Бзелимитно',
+	Unlimited = 'Безлимитно',
 	Custom = 'Свое время',
 }

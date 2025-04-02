@@ -4,7 +4,10 @@ import { validateDate, validateUrl } from '../../utils/validation'
 import InputField from './InputField'
 import ExpirationOptions from './ExpirationOptions'
 import CustomExpirationInput from './CustomExpirationInput'
+import { ApiService, getExpField } from '../../utils/api'
 import './Main.scss'
+import { UrlCreateRequest, UrlResponse } from '../../types/api'
+import { BASE_URL } from '../../utils/constants'
 
 type InputProps = {
 	setTitle: (url: string) => void
@@ -31,13 +34,18 @@ const InputSection: React.FC<InputProps> = ({ setTitle }) => {
 			urlInputRef.current?.classList.add('breathing-red')
 		}
 
-		console.log(isValidUrl, isValidDate)
-
 		if (isValidDate && isValidUrl) {
-			setTitle(inputValue)
-			setInputValue('')
-			setOptionInputValue('')
-			setSelectedOption(ExpOpts.Day)
+			const payload: UrlCreateRequest = {
+				url: inputValue,
+				expiration_time: getExpField(selectedOption, optionInputValue),
+			}
+
+			new ApiService().createShortUrl(payload).then((resp: UrlResponse) => {
+				setSelectedOption(ExpOpts.Day)
+				setOptionInputValue('')
+				setInputValue('')
+				setTitle(BASE_URL + '/' + resp.hash)
+			})
 		}
 		event.preventDefault()
 	}
