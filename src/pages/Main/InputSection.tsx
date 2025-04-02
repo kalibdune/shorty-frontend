@@ -5,9 +5,9 @@ import InputField from './InputField'
 import ExpirationOptions from './ExpirationOptions'
 import CustomExpirationInput from './CustomExpirationInput'
 import { ApiService, getExpField } from '../../utils/api'
-import './Main.scss'
 import { UrlCreateRequest, UrlResponse } from '../../types/api'
 import { BASE_URL } from '../../utils/constants'
+import './Main.scss'
 
 type InputProps = {
 	setTitle: (url: string) => void

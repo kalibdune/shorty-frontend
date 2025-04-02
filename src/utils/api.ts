@@ -2,7 +2,6 @@ import axios, { AxiosInstance } from 'axios'
 import { BASE_URL } from './constants'
 import { ExpOpts } from '../types/enums'
 import {
-	AuthResponse,
 	UrlCreateRequest,
 	UrlResponse,
 	UserCreateRequest,
@@ -19,20 +18,37 @@ export class ApiService {
 		})
 	}
 
+	private async requestToAPI<T>(
+		endpoint: string,
+		method: string = 'GET',
+		data?: any
+	): Promise<T> {
+		const response = await this.axiosInstance.request<T>({
+			url: endpoint,
+			method,
+			data,
+		})
+		return response.data
+	}
+
 	private async request<T>(
 		endpoint: string,
 		method: string = 'GET',
 		data?: any
 	): Promise<T> {
 		try {
-			const response = await this.axiosInstance.request<T>({
-				url: endpoint,
-				method,
-				data,
-			})
-			return response.data
-		} catch (error: any) {
-			throw new Error(error.response?.data?.message || error.message)
+			return this.requestToAPI<T>(endpoint, method, data)
+		} catch (error: unknown) {
+			if (axios.isAxiosError(error)) {
+				if (error.response?.status === 401) {
+					await this.requestToAPI<void>('/api/refresh/', 'GET').then(() => {
+						return this.requestToAPI<T>(endpoint, method, data)
+					})
+				}
+
+				throw new Error(error.message)
+			}
+			throw new Error('An unexpected error occurred')
 		}
 	}
 
@@ -46,7 +62,7 @@ export class ApiService {
 		size: number = 10
 	): Promise<UrlResponse[]> {
 		return this.request<UrlResponse[]>(
-			`/api/url/${userId}/?page=${page}&size=${size}`,
+			`/api/url/user/${userId}/?page=${page}&size=${size}`,
 			'GET'
 		)
 	}
@@ -70,21 +86,25 @@ export class ApiService {
 		return this.request<UserResponse>(`/api/user/${id}/`, 'GET')
 	}
 
-	async login(username: string, password: string): Promise<AuthResponse> {
+	async login(username: string, password: string): Promise<void> {
 		const payload = new URLSearchParams()
 		payload.append('username', username)
 		payload.append('password', password)
 		payload.append('grant_type', 'password')
 
-		return this.request<AuthResponse>('/api/token/', 'POST', payload)
+		return this.request<void>('/api/token/', 'POST', payload)
 	}
 
-	async refreshToken(): Promise<AuthResponse> {
-		return this.request<AuthResponse>('/api/token/refresh/', 'POST')
+	async refreshToken(): Promise<void> {
+		return this.request<void>('/api/token/refresh/', 'POST')
 	}
 
 	async revokeTokens(): Promise<void> {
-		return this.request<void>('/api/token/revoke/', 'POST')
+		return this.request<void>('/api/token/revoke/', 'DELETE')
+	}
+
+	async logout(): Promise<void> {
+		return this.request<void>('/api/token/logout/', 'DELETE')
 	}
 }
 
