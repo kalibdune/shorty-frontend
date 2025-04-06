@@ -1,10 +1,11 @@
 import React from 'react'
 import '../index.scss'
+import { Link } from 'react-router-dom'
 
 const Main: React.FC = () => {
 	return (
 		<nav className='nav'>
-			<a href='#'>Мои ссылки</a>
+			<Link to={{ pathname: '/login' }}>Мои ссылки</Link>
 		</nav>
 	)
 }

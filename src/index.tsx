@@ -10,9 +10,9 @@ const domNode = document.getElementById('root') as HTMLDivElement
 const root = createRoot(domNode)
 root.render(
 	<StrictMode>
-		<Nav></Nav>
-		<Background></Background>
 		<BrowserRouter>
+			<Nav></Nav>
+			<Background></Background>
 			<Routes>
 				<Route path='/' element={<Main />} />
 				<Route path='/auth' element={<Auth />} />
