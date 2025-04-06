@@ -1,5 +1,5 @@
 import React from 'react'
-import '../index.scss'
+import './background.scss'
 
 const Main: React.FC = () => {
 	return (

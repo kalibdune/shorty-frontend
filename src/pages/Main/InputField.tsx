@@ -1,4 +1,5 @@
 import React from 'react'
+import Button from '../../components/Button/Button'
 
 type InputFieldProps = {
 	inputValue: string
@@ -20,9 +21,7 @@ const InputField: React.FC<InputFieldProps> = ({
 				value={inputValue}
 				onChange={onChange}
 			/>
-			<button className='button' type='submit'>
-				Сократить
-			</button>
+			<Button type={'submit'}>Сократить</Button>
 		</div>
 	)
 }

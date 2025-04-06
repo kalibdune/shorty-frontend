@@ -1,17 +1,9 @@
-.container {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	width: 80vw;
-}
-
 header {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	height: 200px;
-	margin-bottom: 10vh;
+	height: 100px;
 }
 
 @mixin font-header {
@@ -27,33 +19,7 @@ header {
 }
 
 .title-url {
-	font-size: 70px;
-}
-
-.input-container {
-	display: flex;
-	align-items: center;
-	width: 100%;
-	max-width: 550px;
-	padding: 5px 10px;
-	background: white;
-	border-radius: 30px;
-	box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
-}
-
-.breathing-red {
-	animation: breathingRedShadow 1.5s ease-in-out 3;
-}
-
-@keyframes breathingRedShadow {
-	0%,
-	100% {
-		box-shadow: 0 0 10px 2px rgb(255 0 0 / 50%);
-	}
-
-	50% {
-		box-shadow: 0 0 20px 4px rgb(255 0 0 / 80%);
-	}
+	font-size: 2em;
 }
 
 @mixin input-box {
@@ -87,7 +53,6 @@ header {
 	gap: 30px;
 	width: 100%;
 	max-width: 550px;
-	margin-top: 5vh;
 	padding: 15px 10px;
 	background: white;
 	border-radius: 30px;
@@ -200,7 +165,7 @@ input[type='radio'] {
 	}
 
 	.title-url {
-		font-size: 50px;
+		font-size: 20px;
 	}
 
 	.input-container {
