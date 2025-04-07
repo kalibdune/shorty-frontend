@@ -10,6 +10,9 @@ header {
 	font-weight: bold;
 	background: linear-gradient(45deg, rgb(63 60 60), rgb(242 231 231));
 	background-clip: text;
+	background-size: 150%;
+	background-position: 0 0;
+	transition: background-position 1.5s ease-in-out;
 	-webkit-text-fill-color: transparent;
 }
 
@@ -19,7 +22,15 @@ header {
 }
 
 .title-url {
+	@include font-header;
 	font-size: 2em;
+}
+
+.title-url:hover,
+.title:hover {
+	background-size: 150%;
+	background-position: 100% 0;
+	transition: background-position 1.5s ease-in-out;
 }
 
 @mixin input-box {

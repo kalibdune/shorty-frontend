@@ -33,6 +33,14 @@ body {
 	animation: breathingRedShadow 1.5s ease-in-out 3;
 }
 
+.a-regular {
+	cursor: pointer;
+}
+
+.a-regular:hover {
+	text-decoration: underline;
+}
+
 @keyframes breathingRedShadow {
 	0%,
 	100% {

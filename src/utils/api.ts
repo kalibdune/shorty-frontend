@@ -86,9 +86,9 @@ export class ApiService {
 		return this.request<UserResponse>(`/api/user/${id}/`, 'GET')
 	}
 
-	async login(username: string, password: string): Promise<void> {
+	async login(email: string, password: string): Promise<void> {
 		const payload = new URLSearchParams()
-		payload.append('username', username)
+		payload.append('username', email)
 		payload.append('password', password)
 		payload.append('grant_type', 'password')
 

@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react'
 import Input from './InputSection'
 import './Main.scss'
+import Nav from '../../components/Nav/Nav'
 
 const Main: React.FC = () => {
 	const [url, setUrl] = useState('Shorty')
@@ -13,14 +14,17 @@ const Main: React.FC = () => {
 	}
 
 	return (
-		<div className='container'>
-			<header>
-				<p ref={titleRef} className='title'>
-					{url}
-				</p>
-			</header>
-			<Input setTitle={setTitleUrl}></Input>
-		</div>
+		<>
+			<Nav></Nav>
+			<div className='container'>
+				<header>
+					<p ref={titleRef} className='title'>
+						{url}
+					</p>
+				</header>
+				<Input setTitle={setTitleUrl}></Input>
+			</div>
+		</>
 	)
 }
 
