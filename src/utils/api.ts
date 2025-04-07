@@ -36,18 +36,26 @@ export class ApiService {
 		method: string = 'GET',
 		data?: any
 	): Promise<T> {
+		console.log("request")
 		try {
-			return this.requestToAPI<T>(endpoint, method, data)
+			return await this.requestToAPI<T>(endpoint, method, data)
 		} catch (error: unknown) {
+			console.log("error caught in request")
 			if (axios.isAxiosError(error)) {
+				console.error("axios error", error.response?.status, error.message)
 				if (error.response?.status === 401) {
-					await this.requestToAPI<void>('/api/refresh/', 'GET').then(() => {
-						return this.requestToAPI<T>(endpoint, method, data)
-					})
+					try {
+						await this.requestToAPI<void>('/api/token/refresh/', 'POST')
+						console.info("refresh endpoint done")
+						return await this.requestToAPI<T>(endpoint, method, data)
+					} catch (refreshError) {
+						console.error("refresh token error", refreshError)
+						throw new Error('Failed to refresh token')
+					}
 				}
-
 				throw new Error(error.message)
 			}
+			console.error("unexpected error", error)
 			throw new Error('An unexpected error occurred')
 		}
 	}
@@ -86,13 +94,13 @@ export class ApiService {
 		return this.request<UserResponse>(`/api/user/${id}/`, 'GET')
 	}
 
-	async login(email: string, password: string): Promise<void> {
+	async login(email: string, password: string): Promise<UserResponse> {
 		const payload = new URLSearchParams()
 		payload.append('username', email)
 		payload.append('password', password)
 		payload.append('grant_type', 'password')
 
-		return this.request<void>('/api/token/', 'POST', payload)
+		return this.request<UserResponse>('/api/token/', 'POST', payload)
 	}
 
 	async refreshToken(): Promise<void> {
