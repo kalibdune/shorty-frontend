@@ -7,6 +7,7 @@ import {
 	UrlRedirectRequest,
 	UrlRedirectStatistic,
 	UrlResponse,
+	UrlUpdateRequest,
 	UserCreateRequest,
 	UserResponse,
 	UserUpdateRequest,
@@ -93,6 +94,10 @@ export class ApiService {
 			'POST',
 			payload
 		)
+	}
+
+	async updateUrlById(id: string, payload: UrlUpdateRequest): Promise<UrlResponse> {
+		return this.request<UrlResponse>(`/api/url/${id}/`, 'PUT', payload)
 	}
 
 	async createUser(payload: UserCreateRequest): Promise<UserResponse> {

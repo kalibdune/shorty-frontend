@@ -3,6 +3,11 @@ export interface UrlCreateRequest {
 	expiration_time?: Date | null
 }
 
+export interface UrlUpdateRequest {
+	url: string
+	expired_at?: Date | null
+}
+
 export interface UrlResponse {
 	url: string
 	hash: string

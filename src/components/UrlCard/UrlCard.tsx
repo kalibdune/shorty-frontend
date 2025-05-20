@@ -1,15 +1,19 @@
 import { useState, useRef } from "react"
-import { UrlResponse } from "../../types/api"
+import { UrlResponse, UrlUpdateRequest } from "../../types/api"
 import { BASE_URL } from "../../utils/constants"
 import { validateUrl, validateDate } from "../../utils/validation"
 import Button from "../Button/Button"
 import './UrlCard.scss'
+import { ApiService, getExpField } from "../../utils/api"
+import { ExpOpts } from "../../types/enums"
 
 interface UrlCardProps {
     url: UrlResponse
 }
 
 const UrlCard: React.FC<UrlCardProps> = ({ url }: UrlCardProps) => {
+    const api = new ApiService()
+
     const [isEditing, setIsEditing] = useState(false)
     const [editedUrl, setEditedUrl] = useState(url.url)
     const [editedExpiredAt, setEditedExpiredAt] = useState(url.expired_at ? url.expired_at : "Безлимитно")
@@ -29,13 +33,21 @@ const UrlCard: React.FC<UrlCardProps> = ({ url }: UrlCardProps) => {
             return
         }
 
-        if (url.url !== editedUrl && url.expired_at !== editedExpiredAt) {
-            console.log("has changes");
+        if (url.url !== editedUrl || url.expired_at !== editedExpiredAt) {
+            const payload: UrlUpdateRequest = {
+                url: url.url !== editedUrl ? editedUrl : url.url,
+                expired_at: editedExpiredAt === "Безлимитно" ? null : getExpField(ExpOpts.Custom, editedExpiredAt)
+            }
+            console.log(payload)
+            api.updateUrlById(url.id, payload)
+                .then(() => {
+                    url.url = editedUrl
+                    url.expired_at = editedExpiredAt
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
         }
-
-        url.url = editedUrl
-        url.expired_at = editedExpiredAt
-
         setIsEditing(false);
     }
 
