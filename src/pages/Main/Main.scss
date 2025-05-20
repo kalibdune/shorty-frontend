@@ -6,6 +6,12 @@ header {
 	height: 100px;
 }
 
+.main-container {
+	min-height: calc(100vh - 70px);
+	justify-content: center;
+	margin: 0;
+}
+
 .title {
 	font-weight: bold;
 	font-size: 116px;

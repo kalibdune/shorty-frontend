@@ -16,7 +16,7 @@ const Main: React.FC = () => {
 	return (
 		<>
 			<Nav></Nav>
-			<div className='container'>
+			<div className='container main-container'>
 				<header>
 					<p ref={titleRef} className='title'>
 						{url}
