@@ -6,143 +6,35 @@ header {
 	height: 100px;
 }
 
-@mixin font-header {
+.title {
 	font-weight: bold;
+	font-size: 116px;
 	background: linear-gradient(45deg, rgb(63 60 60), rgb(242 231 231));
-	background-clip: text;
-	background-size: 150%;
 	background-position: 0 0;
+	background-size: 150%;
+	background-clip: text;
 	transition: background-position 1.5s ease-in-out;
 	-webkit-text-fill-color: transparent;
-}
 
-.title {
-	@include font-header;
-	font-size: 116px;
+	&:hover {
+		background-position: 100% 0;
+		background-size: 150%;
+		transition: background-position 1.5s ease-in-out;
+	}
 }
 
 .title-url {
-	@include font-header;
 	font-size: 2em;
-}
 
-.title-url:hover,
-.title:hover {
-	background-size: 150%;
-	background-position: 100% 0;
-	transition: background-position 1.5s ease-in-out;
-}
-
-@mixin input-box {
-	position: relative;
-	flex: 1;
-	min-width: 0;
-	padding: 12px;
-	font-size: 18px;
-	border: none;
-	border-radius: 30px;
-	outline: none;
-}
-
-.input-box {
-	@include input-box;
-}
-
-.options {
-	display: flex;
-	justify-content: center;
-	gap: 20px;
-	width: 100%;
-	max-width: 550px;
-	background: white;
-}
-
-.options-container {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	gap: 30px;
-	width: 100%;
-	max-width: 550px;
-	padding: 15px 10px;
-	background: white;
-	border-radius: 30px;
-	box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
-}
-
-.option-button {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	min-width: 100px;
-	padding: 10px;
-	font-size: 16px;
-	cursor: pointer;
-}
-
-.option-button-checked {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	min-width: 100px;
-	padding: 10px;
-	color: white;
-	font-size: 16px;
-	white-space: nowrap;
-	background: #333333;
-	border: none;
-	border-radius: 30px;
+	&:hover {
+		background-position: 100% 0;
+		background-size: 150%;
+		transition: background-position 1.5s ease-in-out;
+	}
 }
 
 input[type='radio'] {
 	display: none;
-}
-
-.input-box-options {
-	@include input-box;
-	position: relative;
-	margin-top: -75px;
-	text-align: center;
-	background-color: white;
-	background-color: transparent;
-	border: 1px solid transparent;
-	visibility: hidden;
-	opacity: 0;
-}
-
-.input-box-options.show {
-	visibility: visible;
-	animation: fadeInDown 0.5s ease forwards;
-}
-
-.input-box-options.hide {
-	visibility: hidden;
-	transition: visibility 0s linear 0.5s;
-	animation: fadeOutUp 0.5s ease forwards;
-}
-
-@keyframes fadeInDown {
-	from {
-		margin-top: -75px;
-		opacity: 0;
-	}
-
-	to {
-		margin-top: 0;
-		opacity: 1;
-	}
-}
-
-@keyframes fadeOutUp {
-	from {
-		margin-top: 0;
-		opacity: 1;
-	}
-
-	to {
-		margin-top: -75px;
-		opacity: 0;
-	}
 }
 
 @media (width <=700px) {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Button from '../../components/Button/Button'
 import { useNavigate } from 'react-router-dom'
 import StorageService from '../../utils/storage'
@@ -14,6 +14,7 @@ export const Auth: React.FC = () => {
 	})
 	const [logged, setLogged] = useState(false)
 	const [isRegisterMode, setIsRegisterMode] = useState(true)
+	const inputRefs = useRef<(HTMLDivElement | null)[]>([])
 	const navigator = useNavigate()
 	const storage = new StorageService()
 	const api = new ApiService()
@@ -25,6 +26,7 @@ export const Auth: React.FC = () => {
 	}, [])
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		inputRefs.current.forEach((ref) => ref?.classList.remove('breathing-red'))
 		const { name, value } = e.target
 		setFormData({ ...formData, [name]: value })
 	}
@@ -37,6 +39,9 @@ export const Auth: React.FC = () => {
 				storage.setItem('isLogged', true)
 				setLogged(true)
 				navigator('/')
+			}).catch((error) => {
+				console.error(error)
+				inputRefs.current.forEach((ref) => ref?.classList.add('breathing-red'))
 			})
 		} else {
 			const payload: UserCreateRequest = {
@@ -61,9 +66,9 @@ export const Auth: React.FC = () => {
 		<>
 			<Nav></Nav>
 			<div className='container'>
-				<form onSubmit={handleSubmit} className='container'>
+				<form onSubmit={handleSubmit} className='container' >
 					{isRegisterMode && (
-						<div className='input-container'>
+						<div className='input-container' ref={(el) => { inputRefs.current[0] = el }}>
 							<input
 								type='text'
 								name='name'
@@ -75,7 +80,7 @@ export const Auth: React.FC = () => {
 							/>
 						</div>
 					)}
-					<div className='input-container'>
+					<div className='input-container' ref={(el) => { inputRefs.current[1] = el }}>
 						<input
 							type='email'
 							name='email'
@@ -86,7 +91,7 @@ export const Auth: React.FC = () => {
 							placeholder='Почта'
 						/>
 					</div>
-					<div className='input-container'>
+					<div className='input-container' ref={(el) => { inputRefs.current[2] = el }}>
 						<input
 							type='password'
 							name='password'
@@ -97,7 +102,7 @@ export const Auth: React.FC = () => {
 							placeholder='Пароль'
 						/>
 					</div>
-					<Button type={'submit'} className={'button-medium'}>
+					<Button type={'submit'}>
 						{isRegisterMode ? 'Зарегистрироваться' : 'Войти'}
 					</Button>
 					<a onClick={toggleMode} className='a-regular'>

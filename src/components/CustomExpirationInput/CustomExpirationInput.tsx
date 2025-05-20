@@ -2,6 +2,8 @@ import React, { useEffect, useMemo } from 'react'
 import { ExpOpts } from '../../types/enums'
 import { getRandomPlaceholderDay } from '../../utils/placeholders'
 
+import './CustomExpirationInput.scss'
+
 type CustomExpirationInputProps = {
 	optionInputValue: string
 	onChange: (event: React.ChangeEvent<HTMLInputElement>) => void

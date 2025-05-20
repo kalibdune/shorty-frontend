@@ -1,5 +1,6 @@
 import React from 'react'
 import { ExpOpts } from '../../types/enums'
+import './ExpirationOptions.scss'
 
 type ExpirationOptionsProps = {
 	selectedOption: ExpOpts

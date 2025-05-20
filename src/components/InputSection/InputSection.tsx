@@ -1,13 +1,13 @@
 import React, { useState, useRef } from 'react'
 import { ExpOpts } from '../../types/enums'
 import { validateDate, validateUrl } from '../../utils/validation'
-import InputField from './InputField'
-import ExpirationOptions from './ExpirationOptions'
-import CustomExpirationInput from './CustomExpirationInput'
+import InputField from '../InputField/InputField'
+import ExpirationOptions from '../ExpirationOptions/ExpirationOptions'
+import CustomExpirationInput from '../CustomExpirationInput/CustomExpirationInput'
 import { ApiService, getExpField } from '../../utils/api'
 import { UrlCreateRequest, UrlResponse } from '../../types/api'
 import { BASE_URL } from '../../utils/constants'
-import './Main.scss'
+import './InputSection.scss'
 
 type InputProps = {
 	setTitle: (url: string) => void
@@ -45,6 +45,8 @@ const InputSection: React.FC<InputProps> = ({ setTitle }) => {
 				setOptionInputValue('')
 				setInputValue('')
 				setTitle(BASE_URL + '/' + resp.hash)
+			}).catch(() => {
+				urlInputRef.current?.classList.add('breathing-red')
 			})
 		}
 		event.preventDefault()

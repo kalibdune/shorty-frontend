@@ -1,7 +1,7 @@
 import React from 'react'
 import './Button.scss'
 
-interface ButtonProps {
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 	className?: string
 	type?: 'button' | 'submit' | 'reset'
 	onClick?: () => void
@@ -13,9 +13,15 @@ const Button: React.FC<ButtonProps> = ({
 	type = 'button',
 	onClick,
 	children,
+	...etc
 }) => {
 	return (
-		<button className={`button ${className}`} type={type} onClick={onClick}>
+		<button 
+			className={`button ${className}`} 
+			type={type} 
+			onClick={onClick}
+			{...etc}
+		>
 			{children}
 		</button>
 	)

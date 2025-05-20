@@ -3,9 +3,14 @@ import { BASE_URL } from './constants'
 import { ExpOpts } from '../types/enums'
 import {
 	UrlCreateRequest,
+	UrlPaginatedResponse,
+	UrlRedirectRequest,
+	UrlRedirectStatistic,
 	UrlResponse,
 	UserCreateRequest,
 	UserResponse,
+	UserUpdateRequest,
+	RevokedTokensResponse
 } from '../types/api'
 
 export class ApiService {
@@ -68,22 +73,26 @@ export class ApiService {
 		userId: string,
 		page: number = 1,
 		size: number = 10
-	): Promise<UrlResponse[]> {
-		return this.request<UrlResponse[]>(
+	): Promise<UrlPaginatedResponse> {
+		return this.request<UrlPaginatedResponse>(
 			`/api/url/user/${userId}/?page=${page}&size=${size}`,
 			'GET'
 		)
 	}
 
-	async updateUrl(
-		id: string,
-		payload: Partial<UrlCreateRequest>
-	): Promise<UrlResponse> {
-		return this.request<UrlResponse>(`/api/url/${id}/`, 'PATCH', payload)
-	}
-
 	async getUrlByHash(hash: string): Promise<UrlResponse> {
 		return this.request<UrlResponse>(`/api/url/${hash}/`, 'GET')
+	}
+
+	async getUrlStatistic(
+		urlId: string,
+		payload: UrlRedirectRequest
+	): Promise<UrlRedirectStatistic> {
+		return this.request<UrlRedirectStatistic>(
+			`/api/url/statistic/${urlId}`,
+			'POST',
+			payload
+		)
 	}
 
 	async createUser(payload: UserCreateRequest): Promise<UserResponse> {
@@ -92,6 +101,13 @@ export class ApiService {
 
 	async getUserById(id: string): Promise<UserResponse> {
 		return this.request<UserResponse>(`/api/user/${id}/`, 'GET')
+	}
+
+	async updateUser(
+		id: string,
+		payload: UserUpdateRequest
+	): Promise<UserResponse> {
+		return this.request<UserResponse>(`/api/user/${id}/`, 'PATCH', payload)
 	}
 
 	async login(email: string, password: string): Promise<UserResponse> {
@@ -107,8 +123,8 @@ export class ApiService {
 		return this.request<void>('/api/token/refresh/', 'POST')
 	}
 
-	async revokeTokens(): Promise<void> {
-		return this.request<void>('/api/token/revoke/', 'DELETE')
+	async revokeTokens(): Promise<RevokedTokensResponse> {
+		return this.request<RevokedTokensResponse>('/api/token/revoke/', 'DELETE')
 	}
 
 	async logout(): Promise<void> {

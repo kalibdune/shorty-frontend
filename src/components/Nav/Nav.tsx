@@ -16,7 +16,9 @@ const Nav: React.FC = () => {
 	}, [])
 
 	const logOut = () => {
-		api.logout().then(() => {
+		api.logout().catch((error) => {
+			console.log(error)
+		}).finally(() => {
 			setLogged(false)
 			storage.removeItem('user')
 			storage.setItem('isLogged', false)
@@ -28,26 +30,26 @@ const Nav: React.FC = () => {
 	return (
 		<nav className='nav'>
 			{location.pathname !== '/profile' && (
-				<Link to={{ pathname: '/profile' }} className='nav-link'>
+				<Link to={{ pathname: '/profile' }} className='styled-link'>
 					Профиль
 				</Link>
 			)}
 			{location.pathname !== '/urls' && (
-				<Link to={{ pathname: '/urls' }} className='nav-link'>
+				<Link to={{ pathname: '/urls' }} className='styled-link'>
 					Мои ссылки
 				</Link>
 			)}
 			{location.pathname !== '/' && (
-				<Link to={{ pathname: '/' }} className='nav-link'>
+				<Link to={{ pathname: '/' }} className='styled-link'>
 					Shorty
 				</Link>
 			)}
 			{logged ? (
-				<a className='nav-link' onClick={logOut}>
+				<a className='styled-link' onClick={logOut}>
 					Выйти
 				</a>
 			) : (
-				<Link to={{ pathname: '/auth' }} className='nav-link'>
+				<Link to={{ pathname: '/auth' }} className='styled-link'>
 					Войти
 				</Link>
 			)}

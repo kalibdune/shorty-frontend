@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react'
-import Input from './InputSection'
+import InputSection from '../../components/InputSection/InputSection'
 import './Main.scss'
 import Nav from '../../components/Nav/Nav'
 
@@ -22,7 +22,7 @@ const Main: React.FC = () => {
 						{url}
 					</p>
 				</header>
-				<Input setTitle={setTitleUrl}></Input>
+				<InputSection setTitle={setTitleUrl} />
 			</div>
 		</>
 	)
