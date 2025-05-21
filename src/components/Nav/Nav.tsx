@@ -16,13 +16,16 @@ const Nav: React.FC = () => {
 	}, [])
 
 	const logOut = () => {
-		api.logout().catch((error) => {
-			console.log(error)
-		}).finally(() => {
-			setLogged(false)
-			storage.removeItem('user')
-			storage.setItem('isLogged', false)
-		})
+		api
+			.logout()
+			.catch((error) => {
+				console.log(error)
+			})
+			.finally(() => {
+				setLogged(false)
+				storage.removeItem('user')
+				storage.setItem('isLogged', false)
+			})
 	}
 
 	console.log(location.pathname)

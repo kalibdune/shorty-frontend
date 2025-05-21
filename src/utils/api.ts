@@ -11,7 +11,7 @@ import {
 	UserCreateRequest,
 	UserResponse,
 	UserUpdateRequest,
-	RevokedTokensResponse
+	RevokedTokensResponse,
 } from '../types/api'
 
 export class ApiService {
@@ -42,26 +42,26 @@ export class ApiService {
 		method: string = 'GET',
 		data?: any
 	): Promise<T> {
-		console.log("request")
+		console.log('request')
 		try {
 			return await this.requestToAPI<T>(endpoint, method, data)
 		} catch (error: unknown) {
-			console.log("error caught in request")
+			console.log('error caught in request')
 			if (axios.isAxiosError(error)) {
-				console.error("axios error", error.response?.status, error.message)
+				console.error('axios error', error.response?.status, error.message)
 				if (error.response?.status === 401) {
 					try {
 						await this.requestToAPI<void>('/api/token/refresh/', 'POST')
-						console.info("refresh endpoint done")
+						console.info('refresh endpoint done')
 						return await this.requestToAPI<T>(endpoint, method, data)
 					} catch (refreshError) {
-						console.error("refresh token error", refreshError)
+						console.error('refresh token error', refreshError)
 						throw new Error('Failed to refresh token')
 					}
 				}
 				throw new Error(error.message)
 			}
-			console.error("unexpected error", error)
+			console.error('unexpected error', error)
 			throw new Error('An unexpected error occurred')
 		}
 	}
@@ -100,7 +100,10 @@ export class ApiService {
 		return this.request<UrlResponse>(`/api/url/${id}/`, 'DELETE')
 	}
 
-	async updateUrlById(id: string, payload: UrlUpdateRequest): Promise<UrlResponse> {
+	async updateUrlById(
+		id: string,
+		payload: UrlUpdateRequest
+	): Promise<UrlResponse> {
 		return this.request<UrlResponse>(`/api/url/${id}/`, 'PUT', payload)
 	}
 
@@ -151,7 +154,7 @@ export const getExpField = (
 	} else if (expirationTime == ExpOpts.Week) {
 		exp = new Date(Date.now() + 604800 * 1000)
 	} else if (expirationTime == ExpOpts.Custom && customTime !== '') {
-		let [day, month, year] = customTime.split('.').map(Number)
+		const [day, month, year] = customTime.split('.').map(Number)
 		exp = new Date(Date.UTC(year, month - 1, day))
 	} else {
 		exp = null

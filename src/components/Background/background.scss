@@ -29,3 +29,13 @@
 	left: 70%;
 	background: rgb(75 0 130 / 50%);
 }
+
+@keyframes move-blobs {
+	0% {
+		transform: translate(50, 50);
+	}
+
+	100% {
+		transform: translate(-100px, 50px);
+	}
+}

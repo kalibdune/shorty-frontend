@@ -1,22 +1,22 @@
 .qrCodeContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    border-radius: 12px;
-    background: linear-gradient(339deg, #ffffff, #e3d5fe);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 20px;
+	background: linear-gradient(339deg, #ffffff, #e3d5fe);
+	border-radius: 12px;
 }
 
 .qrCodeWrapper {
-    display: flex;
-    justify-content: center;
-    padding: 16px;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 6px 16px rgba(123, 104, 238, 0.3);
-    border: 1px solid rgba(123, 104, 238, 0.1);
+	display: flex;
+	justify-content: center;
+	padding: 16px;
+	background-color: white;
+	border: 1px solid rgb(123 104 238 / 10%);
+	border-radius: 8px;
+	box-shadow: 0 6px 16px rgb(123 104 238 / 30%);
 }
 
 .qrCode {
-    display: block;
+	display: block;
 }

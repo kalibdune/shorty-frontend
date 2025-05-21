@@ -41,15 +41,18 @@ const InputSection: React.FC<InputProps> = ({ setTitle, setVisibility }) => {
 				expiration_time: getExpField(selectedOption, optionInputValue),
 			}
 
-			new ApiService().createShortUrl(payload).then((resp: UrlResponse) => {
-				setSelectedOption(ExpOpts.Day)
-				setOptionInputValue('')
-				setInputValue('')
-				setTitle(BASE_URL + '/' + resp.hash)
-				setVisibility(true)
-			}).catch(() => {
-				urlInputRef.current?.classList.add('breathing-red')
-			})
+			new ApiService()
+				.createShortUrl(payload)
+				.then((resp: UrlResponse) => {
+					setSelectedOption(ExpOpts.Day)
+					setOptionInputValue('')
+					setInputValue('')
+					setTitle(BASE_URL + '/' + resp.hash)
+					setVisibility(true)
+				})
+				.catch(() => {
+					urlInputRef.current?.classList.add('breathing-red')
+				})
 		}
 		event.preventDefault()
 	}

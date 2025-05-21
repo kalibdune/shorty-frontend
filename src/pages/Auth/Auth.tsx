@@ -33,15 +33,20 @@ export const Auth: React.FC = () => {
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault()
 		if (!isRegisterMode) {
-			api.login(formData.email, formData.password).then((answer) => {
-				storage.setItem('user', answer)
-				storage.setItem('isLogged', true)
-				setLogged(true)
-				navigator('/')
-			}).catch((error) => {
-				console.error(error)
-				inputRefs.current.forEach((ref) => ref?.classList.add('breathing-red'))
-			})
+			api
+				.login(formData.email, formData.password)
+				.then((answer) => {
+					storage.setItem('user', answer)
+					storage.setItem('isLogged', true)
+					setLogged(true)
+					navigator('/')
+				})
+				.catch((error) => {
+					console.error(error)
+					inputRefs.current.forEach((ref) =>
+						ref?.classList.add('breathing-red')
+					)
+				})
 		} else {
 			const payload: UserCreateRequest = {
 				email: formData.email,
@@ -65,9 +70,14 @@ export const Auth: React.FC = () => {
 		<>
 			<Nav></Nav>
 			<div className='container'>
-				<form onSubmit={handleSubmit} className='container' >
+				<form onSubmit={handleSubmit} className='container'>
 					{isRegisterMode && (
-						<div className='input-container' ref={(el) => { inputRefs.current[0] = el }}>
+						<div
+							className='input-container'
+							ref={(el) => {
+								inputRefs.current[0] = el
+							}}
+						>
 							<input
 								type='text'
 								name='name'
@@ -79,7 +89,12 @@ export const Auth: React.FC = () => {
 							/>
 						</div>
 					)}
-					<div className='input-container' ref={(el) => { inputRefs.current[1] = el }}>
+					<div
+						className='input-container'
+						ref={(el) => {
+							inputRefs.current[1] = el
+						}}
+					>
 						<input
 							type='email'
 							name='email'
@@ -90,7 +105,12 @@ export const Auth: React.FC = () => {
 							placeholder='Почта'
 						/>
 					</div>
-					<div className='input-container' ref={(el) => { inputRefs.current[2] = el }}>
+					<div
+						className='input-container'
+						ref={(el) => {
+							inputRefs.current[2] = el
+						}}
+					>
 						<input
 							type='password'
 							name='password'

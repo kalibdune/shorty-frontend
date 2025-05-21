@@ -1,77 +1,77 @@
 .profile-card {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    max-width: 550px;
-    padding: 25px;
-    background: white;
-    border-radius: 30px;
-    box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	max-width: 550px;
+	padding: 25px;
+	background: white;
+	border-radius: 30px;
+	box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
 }
 
 .profile-title {
-    margin-bottom: 20px;
-    font-size: 24px;
-    font-weight: bold;
-    text-align: center;
+	margin-bottom: 20px;
+	font-weight: bold;
+	font-size: 24px;
+	text-align: center;
 }
 
 .profile-info {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-bottom: 30px;
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+	margin-bottom: 30px;
 }
 
 .profile-field {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 15px;
-    background-color: #f9f9f9;
-    border-radius: 15px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px 15px;
+	background-color: #f9f9f9;
+	border-radius: 15px;
 }
 
 .field-label {
-    font-weight: bold;
-    color: #333;
+	color: #333333;
+	font-weight: bold;
 }
 
 .field-value {
-    color: #555;
-    word-break: break-all;
+	color: #555555;
+	word-break: break-all;
 }
 
 .profile-actions {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-top: 20px;
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+	margin-top: 20px;
 }
 
 .revoke-button,
 .logout-button {
-    width: 100%;
+	width: 100%;
 }
 
 .revoke-button:disabled {
-    background-color: #cccccc;
-    cursor: not-allowed;
+	background-color: #cccccc;
+	cursor: not-allowed;
 }
 
 .revoke-result {
-    margin: 15px 0;
-    padding: 10px;
-    background-color: #e8f5e9;
-    border-radius: 10px;
-    text-align: center;
-    color: #2e7d32;
+	margin: 15px 0;
+	padding: 10px;
+	color: #2e7d32;
+	text-align: center;
+	background-color: #e8f5e9;
+	border-radius: 10px;
 }
 
 @media (width <=500px) {
-    .profile-field {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 5px;
-    }
+	.profile-field {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 5px;
+	}
 }

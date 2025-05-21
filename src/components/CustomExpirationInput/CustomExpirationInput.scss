@@ -1,52 +1,52 @@
 .input-box-options {
-    position: relative;
-    flex: 1;
-    min-width: 0;
-    margin-top: -75px;
-    padding: 12px;
-    font-size: 18px;
-    text-align: center;
-    background-color: white;
-    background-color: transparent;
-    border: none;
-    border: 1px solid transparent;
-    border-radius: 30px;
-    outline: none;
-    visibility: hidden;
-    opacity: 0;
+	position: relative;
+	flex: 1;
+	min-width: 0;
+	margin-top: -75px;
+	padding: 12px;
+	font-size: 18px;
+	text-align: center;
+	background-color: white;
+	background-color: transparent;
+	border: none;
+	border: 1px solid transparent;
+	border-radius: 30px;
+	outline: none;
+	visibility: hidden;
+	opacity: 0;
 }
 
 .input-box-options.show {
-    visibility: visible;
-    animation: fadeInDown 0.5s ease forwards;
+	visibility: visible;
+	animation: fade-in-down 0.5s ease forwards;
 }
 
 .input-box-options.hide {
-    visibility: hidden;
-    transition: visibility 0s linear 0.5s;
-    animation: fadeOutUp 0.5s ease forwards;
+	visibility: hidden;
+	transition: visibility 0s linear 0.5s;
+	animation: fade-out-up 0.5s ease forwards;
 }
 
-@keyframes fadeInDown {
-    from {
-        margin-top: -75px;
-        opacity: 0;
-    }
+@keyframes fade-in-down {
+	from {
+		margin-top: -75px;
+		opacity: 0;
+	}
 
-    to {
-        margin-top: 0;
-        opacity: 1;
-    }
+	to {
+		margin-top: 0;
+		opacity: 1;
+	}
 }
 
-@keyframes fadeOutUp {
-    from {
-        margin-top: 0;
-        opacity: 1;
-    }
+@keyframes fade-out-up {
+	from {
+		margin-top: 0;
+		opacity: 1;
+	}
 
-    to {
-        margin-top: -75px;
-        opacity: 0;
-    }
+	to {
+		margin-top: -75px;
+		opacity: 0;
+	}
 }

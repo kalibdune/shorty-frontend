@@ -16,9 +16,9 @@ const Button: React.FC<ButtonProps> = ({
 	...etc
 }) => {
 	return (
-		<button 
-			className={`button ${className}`} 
-			type={type} 
+		<button
+			className={`button ${className}`}
+			type={type}
 			onClick={onClick}
 			{...etc}
 		>
