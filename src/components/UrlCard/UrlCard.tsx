@@ -1,4 +1,4 @@
-import { useState, useRef } from "react"
+import { useState, useRef, ReactElement, ReactNode } from "react"
 import { UrlResponse, UrlUpdateRequest } from "../../types/api"
 import { BASE_URL } from "../../utils/constants"
 import { validateUrl, validateDate } from "../../utils/validation"
@@ -6,6 +6,9 @@ import Button from "../Button/Button"
 import './UrlCard.scss'
 import { ApiService, getExpField } from "../../utils/api"
 import { ExpOpts } from "../../types/enums"
+import Popup from "../popup/popup"
+import QRPopup from "../QRPopup/QRPopup"
+
 
 interface UrlCardProps {
     url: UrlResponse
@@ -15,6 +18,8 @@ const UrlCard: React.FC<UrlCardProps> = ({ url }: UrlCardProps) => {
     const api = new ApiService()
 
     const [isEditing, setIsEditing] = useState(false)
+    const [isOpenPopup, setIsOpenPopup] = useState(false)
+    const [popupChildren, setPopupChildren] = useState<ReactNode>()
     const [editedUrl, setEditedUrl] = useState(url.url)
     const [editedExpiredAt, setEditedExpiredAt] = useState(url.expired_at ? url.expired_at : "Безлимитно")
 
@@ -73,6 +78,14 @@ const UrlCard: React.FC<UrlCardProps> = ({ url }: UrlCardProps) => {
 
     return (
         <>
+            {isOpenPopup &&
+                <Popup
+                    isOpen={true}
+                    onClose={() => { setIsOpenPopup(false) }}
+                    children={popupChildren}>
+                </Popup>
+            }
+
             {isEditing && (
                 <div
                     className="overlay"
@@ -80,8 +93,14 @@ const UrlCard: React.FC<UrlCardProps> = ({ url }: UrlCardProps) => {
                 >
                 </div>
             )}
+
             <div className={`card ${isEditing && "above"}`}>
-                <div className="card-header styled-link">
+                <div className="card-header styled-link" onClick={() => {
+                    setIsOpenPopup(true)
+                    setPopupChildren(
+                        <QRPopup url={`${BASE_URL}/${url.hash}`} hashCode={url.hash}></QRPopup>
+                    )
+                }}>
                     <a
                         href={`${BASE_URL}/${url.hash}`}
                         className="styled-link"
@@ -131,9 +150,17 @@ const UrlCard: React.FC<UrlCardProps> = ({ url }: UrlCardProps) => {
                                 </Button>
                             </>
                         ) : (
-                            <Button onClick={() => setIsEditing(true)} className="card-button">
-                                <div>Изменить</div>
-                            </Button>
+                            <div className="card-body">
+                                <Button onClick={() => setIsEditing(true)} className="card-button">
+                                    <div>Изменить</div>
+                                </Button>
+                                <Button onClick={() => {
+                                    setIsOpenPopup(true)
+                                    setPopupChildren(<h1>Text</h1>)
+                                }} className="card-button">
+                                    <div>Статистика</div>
+                                </Button>
+                            </div>
                         )}
                     </div>
                 </div>

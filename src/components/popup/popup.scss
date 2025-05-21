@@ -8,12 +8,15 @@
     align-items: center;
     width: 100vw;
     height: 100vh;
-    background-color: rgb(0 0 0 / 50%);
+    background-color: rgba(0, 0, 0, 0.8);
 
 }
 
 .popup-content {
     position: relative;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
     width: 90%;
     max-width: 500px;
     padding: 20px;
@@ -33,6 +36,13 @@
     border: none;
     cursor: pointer;
     transition: color 0.2s ease;
+}
+
+.popup-open {
+    overflow: hidden;
+    height: 100%;
+    position: fixed;
+    width: 100%;
 }
 
 .popup-close:hover {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './popup.scss';
 
 interface PopupProps {
@@ -8,6 +8,15 @@ interface PopupProps {
 }
 
 const Popup: React.FC<PopupProps> = ({ isOpen, onClose, children }) => {
+    useEffect(() => {
+        if (isOpen) {
+            document.body.classList.add('popup-open');
+        }
+        return () => {
+            document.body.classList.remove('popup-open');
+        };
+    }, [isOpen]);
+
     if (!isOpen) return null;
 
     return (
@@ -22,4 +31,5 @@ const Popup: React.FC<PopupProps> = ({ isOpen, onClose, children }) => {
     );
 };
 
-export default Popup;
+export default Popup
+export type { PopupProps }

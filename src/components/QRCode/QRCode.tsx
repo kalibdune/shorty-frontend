@@ -26,3 +26,4 @@ const QRCode: React.FC<QRCodeProps> = ({ url, size = 200, visibility }) => {
 };
 
 export default QRCode;
+export type { QRCodeProps }
