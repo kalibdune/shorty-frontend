@@ -1,0 +1,83 @@
+.statistics-chart {
+    width: 100%;
+    padding: 16px 0;
+}
+
+.statistics-controls {
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.range-select {
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    margin-left: 8px;
+    background-color: white;
+}
+
+.chart-container {
+    background-color: #f9f9f9;
+    border-radius: 4px;
+    padding: 16px;
+    margin-bottom: 16px;
+}
+
+.loading-indicator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+    color: #666;
+    font-size: 1.1rem;
+}
+
+.error-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+    color: #e53935;
+    background-color: #ffebee;
+    border-radius: 4px;
+    padding: 20px;
+    text-align: center;
+}
+
+.no-data {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+    color: #666;
+    font-style: italic;
+}
+
+.test-data-notice {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #fffde7;
+    border-radius: 4px;
+    border-left: 4px solid #ffc107;
+    font-size: 0.9rem;
+    color: #5d4037;
+}
+
+.statistics-summary {
+    margin-top: 16px;
+    padding: 12px;
+    background-color: #f0f8ff;
+    border-radius: 4px;
+    border-left: 4px solid #1976d2;
+    font-size: 1rem;
+}
+
+.statistics-summary p {
+    margin: 0;
+}
+
+.statistics-summary strong {
+    font-size: 1.1rem;
+    color: #1976d2;
+}

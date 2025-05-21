@@ -8,6 +8,7 @@ import { ApiService, getExpField } from "../../utils/api"
 import { ExpOpts } from "../../types/enums"
 import Popup from "../popup/popup"
 import QRPopup from "../QRPopup/QRPopup"
+import StatisticsPopup from "../StatisticsPopup/StatisticsPopup"
 
 
 interface UrlCardProps {
@@ -156,7 +157,7 @@ const UrlCard: React.FC<UrlCardProps> = ({ url }: UrlCardProps) => {
                                 </Button>
                                 <Button onClick={() => {
                                     setIsOpenPopup(true)
-                                    setPopupChildren(<h1>Text</h1>)
+                                    setPopupChildren(<StatisticsPopup urlId={url.id}></StatisticsPopup>)
                                 }} className="card-button">
                                     <div>Статистика</div>
                                 </Button>
