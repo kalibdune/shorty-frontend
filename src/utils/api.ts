@@ -96,6 +96,10 @@ export class ApiService {
 		)
 	}
 
+	async deleteUrlById(id: string): Promise<UrlResponse> {
+		return this.request<UrlResponse>(`/api/url/${id}/`, 'DELETE')
+	}
+
 	async updateUrlById(id: string, payload: UrlUpdateRequest): Promise<UrlResponse> {
 		return this.request<UrlResponse>(`/api/url/${id}/`, 'PUT', payload)
 	}

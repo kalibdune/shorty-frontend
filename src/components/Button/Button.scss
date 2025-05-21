@@ -20,3 +20,16 @@
 .card-button {
 	width: 100%;
 }
+
+.delete-button {
+	background-color: #e53935;
+
+	&:hover {
+		background-color: #c62828;
+	}
+
+	&:disabled {
+		background-color: #ffcdd2;
+		cursor: not-allowed;
+	}
+}

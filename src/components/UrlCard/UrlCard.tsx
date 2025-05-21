@@ -1,4 +1,4 @@
-import { useState, useRef, ReactElement, ReactNode } from "react"
+import { useState, useRef, ReactNode } from "react"
 import { UrlResponse, UrlUpdateRequest } from "../../types/api"
 import { BASE_URL } from "../../utils/constants"
 import { validateUrl, validateDate } from "../../utils/validation"
@@ -13,9 +13,10 @@ import StatisticsPopup from "../StatisticsPopup/StatisticsPopup"
 
 interface UrlCardProps {
     url: UrlResponse
+    onDelete?: (id: string) => void
 }
 
-const UrlCard: React.FC<UrlCardProps> = ({ url }: UrlCardProps) => {
+const UrlCard: React.FC<UrlCardProps> = ({ url, onDelete }: UrlCardProps) => {
     const api = new ApiService()
 
     const [isEditing, setIsEditing] = useState(false)
@@ -23,9 +24,27 @@ const UrlCard: React.FC<UrlCardProps> = ({ url }: UrlCardProps) => {
     const [popupChildren, setPopupChildren] = useState<ReactNode>()
     const [editedUrl, setEditedUrl] = useState(url.url)
     const [editedExpiredAt, setEditedExpiredAt] = useState(url.expired_at ? url.expired_at : "Безлимитно")
+    const [isDeleting, setIsDeleting] = useState(false)
 
     const urlInputRef = useRef<HTMLInputElement>(null)
     const dateInputRef = useRef<HTMLInputElement>(null)
+
+    const handleDelete = () => {
+        setIsDeleting(true)
+        api.deleteUrlById(url.id)
+            .then(() => {
+                if (onDelete) {
+                    onDelete(url.id)
+                }
+            })
+            .catch((error) => {
+                console.error('Ошибка при удалении ссылки:', error)
+                alert('Не удалось удалить ссылку. Пожалуйста, попробуйте позже.')
+            })
+            .finally(() => {
+                setIsDeleting(false)
+            })
+    }
 
     const handleConfirmChanges = () => {
         const isValidUrl = validateUrl(editedUrl)
@@ -95,7 +114,7 @@ const UrlCard: React.FC<UrlCardProps> = ({ url }: UrlCardProps) => {
                 </div>
             )}
 
-            <div className={`card ${isEditing && "above"}`}>
+            <div className={`card ${isEditing && "above"}`} data-id={url.id}>
                 <div className="card-header styled-link" onClick={() => {
                     setIsOpenPopup(true)
                     setPopupChildren(
@@ -160,6 +179,13 @@ const UrlCard: React.FC<UrlCardProps> = ({ url }: UrlCardProps) => {
                                     setPopupChildren(<StatisticsPopup urlId={url.id}></StatisticsPopup>)
                                 }} className="card-button">
                                     <div>Статистика</div>
+                                </Button>
+                                <Button
+                                    onClick={handleDelete}
+                                    className="card-button delete-button"
+                                    disabled={isDeleting}
+                                >
+                                    <div>{isDeleting ? 'Удаление...' : 'Удалить'}</div>
                                 </Button>
                             </div>
                         )}

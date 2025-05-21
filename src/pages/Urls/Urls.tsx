@@ -51,13 +51,27 @@ const Urls: React.FC = () => {
 		}
 	}
 
+	const handleDeleteUrl = (deletedUrlId: string) => {
+		if (data) {
+			setData({
+				...data,
+				urls: data.urls.filter(url => url.id !== deletedUrlId),
+				total_count: data.total_count - 1
+			});
+		}
+	}
+
 	return (
 		<>
 			<Nav></Nav>
 			<div className="container">
 				{data?.urls.map((card) => {
 					const formattedCard = dataFormatting(card)
-					return <UrlCard key={formattedCard.id} url={formattedCard}></UrlCard>
+					return <UrlCard
+						key={formattedCard.id}
+						url={formattedCard}
+						onDelete={handleDeleteUrl}
+					></UrlCard>
 				})}
 				{data?.total_count == 0 && <h1>Нет привязанных ссылок для пользователя</h1>}
 			</div>
