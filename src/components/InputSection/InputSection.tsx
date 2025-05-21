@@ -11,9 +11,10 @@ import './InputSection.scss'
 
 type InputProps = {
 	setTitle: (url: string) => void
+	setVisibility: (val: boolean) => void
 }
 
-const InputSection: React.FC<InputProps> = ({ setTitle }) => {
+const InputSection: React.FC<InputProps> = ({ setTitle, setVisibility }) => {
 	const [inputValue, setInputValue] = useState('')
 	const [selectedOption, setSelectedOption] = useState<ExpOpts>(ExpOpts.Day)
 	const [optionInputValue, setOptionInputValue] = useState('')
@@ -45,6 +46,7 @@ const InputSection: React.FC<InputProps> = ({ setTitle }) => {
 				setOptionInputValue('')
 				setInputValue('')
 				setTitle(BASE_URL + '/' + resp.hash)
+				setVisibility(true)
 			}).catch(() => {
 				urlInputRef.current?.classList.add('breathing-red')
 			})

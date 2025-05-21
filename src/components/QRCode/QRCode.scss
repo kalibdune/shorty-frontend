@@ -1,0 +1,20 @@
+.qrCodeContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    border-radius: 12px;
+    background: linear-gradient(339deg, #ffffff, #e3d5fe);
+}
+
+.qrCodeWrapper {
+    padding: 16px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 6px 16px rgba(123, 104, 238, 0.3);
+    border: 1px solid rgba(123, 104, 238, 0.1);
+}
+
+.qrCode {
+    display: block;
+}

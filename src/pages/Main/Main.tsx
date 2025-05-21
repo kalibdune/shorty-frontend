@@ -2,9 +2,11 @@ import React, { useState, useRef } from 'react'
 import InputSection from '../../components/InputSection/InputSection'
 import './Main.scss'
 import Nav from '../../components/Nav/Nav'
+import QRCode from '../../components/QRCode/QRCode'
 
 const Main: React.FC = () => {
 	const [url, setUrl] = useState('Shorty')
+	const [visibilityQR, setVisibilityQR] = useState(false)
 	const titleRef = useRef<HTMLInputElement>(null)
 
 	const setTitleUrl = (resUrl: string): void => {
@@ -22,7 +24,8 @@ const Main: React.FC = () => {
 						{url}
 					</p>
 				</header>
-				<InputSection setTitle={setTitleUrl} />
+				<QRCode url={url} visibility={visibilityQR}></QRCode>
+				<InputSection setTitle={setTitleUrl} setVisibility={setVisibilityQR} />
 			</div>
 		</>
 	)
