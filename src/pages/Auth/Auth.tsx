@@ -13,7 +13,7 @@ export const Auth: React.FC = () => {
 		name: '',
 	})
 	const [logged, setLogged] = useState(false)
-	const [isRegisterMode, setIsRegisterMode] = useState(true)
+	const [isRegisterMode, setIsRegisterMode] = useState(false)
 	const inputRefs = useRef<(HTMLDivElement | null)[]>([])
 	const navigator = useNavigate()
 	const storage = new StorageService()
@@ -21,7 +21,6 @@ export const Auth: React.FC = () => {
 
 	useEffect(() => {
 		const l = storage.getItem<boolean>('isLogged')
-		console.log('Auth', l)
 		setLogged(l ? true : false)
 	}, [])
 

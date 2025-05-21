@@ -29,26 +29,28 @@ const Nav: React.FC = () => {
 
 	return (
 		<nav className='nav'>
-			{location.pathname !== '/profile' && (
-				<Link to={{ pathname: '/profile' }} className='styled-link'>
-					Профиль
-				</Link>
+			<Link to={{ pathname: '/' }} className='styled-link'>
+				Shorty
+			</Link>
+			{logged && (
+				<>
+					{location.pathname !== '/profile' && (
+						<Link to={{ pathname: '/profile' }} className='styled-link'>
+							Профиль
+						</Link>
+					)}
+					{location.pathname !== '/urls' && (
+						<Link to={{ pathname: '/urls' }} className='styled-link'>
+							Мои ссылки
+						</Link>
+					)}
+					<a className='styled-link' onClick={logOut}>
+						Выйти
+					</a>
+				</>
 			)}
-			{location.pathname !== '/urls' && (
-				<Link to={{ pathname: '/urls' }} className='styled-link'>
-					Мои ссылки
-				</Link>
-			)}
-			{location.pathname !== '/' && (
-				<Link to={{ pathname: '/' }} className='styled-link'>
-					Shorty
-				</Link>
-			)}
-			{logged ? (
-				<a className='styled-link' onClick={logOut}>
-					Выйти
-				</a>
-			) : (
+
+			{!logged && location.pathname !== '/auth' && (
 				<Link to={{ pathname: '/auth' }} className='styled-link'>
 					Войти
 				</Link>
