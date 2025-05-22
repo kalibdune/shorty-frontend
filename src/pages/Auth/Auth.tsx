@@ -53,12 +53,19 @@ export const Auth: React.FC = () => {
 				password: formData.password,
 				name: formData.name,
 			}
-			api.createUser(payload).then((answer) => {
-				storage.setItem('isLogged', true)
-				storage.setItem('user', answer)
-				setLogged(true)
-				navigator('/')
-			})
+			api.createUser(payload)
+				.then((answer) => {
+					storage.setItem('isLogged', true)
+					storage.setItem('user', answer)
+					setLogged(true)
+					navigator('/')
+				})
+				.catch((error) => {
+					console.error(error)
+					inputRefs.current.forEach((ref) =>
+						ref?.classList.add('breathing-red')
+					)
+				})
 		}
 	}
 
