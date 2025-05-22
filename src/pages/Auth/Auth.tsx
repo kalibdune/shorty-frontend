@@ -53,7 +53,8 @@ export const Auth: React.FC = () => {
 				password: formData.password,
 				name: formData.name,
 			}
-			api.createUser(payload)
+			api
+				.createUser(payload)
 				.then((answer) => {
 					storage.setItem('isLogged', true)
 					storage.setItem('user', answer)
